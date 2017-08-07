@@ -1,0 +1,17 @@
+language: objective-c
+osx_image: xcode8.3
+before_install:
+- mkdir bin
+- mkdir profiles
+- gem install fir-cli
+before_script:
+- scripts/decrypt-keys.sh
+- scripts/add-keys.sh
+script:
+- scripts/package.sh
+after_success:
+- scripts/upload.sh
+env:
+  global:
+  - APP_NAME=""
+  - PROFILE_NAME=""
